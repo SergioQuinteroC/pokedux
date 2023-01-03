@@ -12,6 +12,7 @@
     "@ant-design/icons": "^4.7.0",
     "antd": "^4.20.2",
     "axios": "^1.2.2",
+    "immutable": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
