@@ -8,15 +8,24 @@ import {
   compose,
   legacy_createStore as createStore,
 } from "redux";
+import thunk from "redux-thunk";
 import { featuring, logger, nameUpperCase } from "./middlewares";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const composedEnhancers = compose(
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(logger, nameUpperCase)
-);
+// const actionSanitizer = (action) => (
+//   action.type === 'FILE_DOWNLOAD_SUCCESS' && action.data ?
+//   { ...action, data: '<<LONG_BLOB>>' } : action
+// );
+
+
+const composeAlt =
+  (typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const composedEnhancers = composeAlt(applyMiddleware(thunk, logger, nameUpperCase));
 
 const store = createStore(pokemonsReducer, composedEnhancers);
 
