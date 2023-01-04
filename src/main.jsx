@@ -14,18 +14,14 @@ import rootReducer from "./reducers/rootReducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// const actionSanitizer = (action) => (
-//   action.type === 'FILE_DOWNLOAD_SUCCESS' && action.data ?
-//   { ...action, data: '<<LONG_BLOB>>' } : action
-// );
-
-
 const composeAlt =
   (typeof window !== "undefined" &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const composedEnhancers = composeAlt(applyMiddleware(thunk, logger, nameUpperCase));
+const composedEnhancers = composeAlt(
+  applyMiddleware(thunk, logger, nameUpperCase)
+);
 
 const store = createStore(rootReducer, composedEnhancers);
 

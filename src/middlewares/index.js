@@ -1,5 +1,3 @@
-import { SET_LOADING, SET_POKEMONS } from "../actions/types";
-
 export const logger = (store) => (next) => (action) => {
   console.log(action);
   next(action);
@@ -18,7 +16,7 @@ export const logger = (store) => (next) => (action) => {
 // };
 
 export const nameUpperCase = (store) => (next) => (action) => {
-  if (action.type === SET_POKEMONS) {
+  if (action.type === "data/setPokemons") {
     const pokemonsUpperCase = action.payload.map((pokemon) => ({
       ...pokemon,
       name: pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
